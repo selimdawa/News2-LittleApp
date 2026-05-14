@@ -1,9 +1,11 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt")
 }
 
 android {
-    namespace = "com.example.news2"
+    namespace = "com.littleapp.news2"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -11,7 +13,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.news2"
+        applicationId = "com.littleapp.news2"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -30,18 +32,36 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+        }
+    }
+    buildFeatures {
+        dataBinding = true
     }
 }
 
 dependencies {
-    implementation(libs.androidx.activity.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
-    implementation(libs.material)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.preference.ktx)           //Shared Preference
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    //Layout
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.material)
+    implementation(libs.androidx.legacy.support.v4)
+    implementation(libs.androidx.cardview)
+    //Image
+    implementation(libs.glide)                          //Glide Image
+    //noinspection KaptUsageInsteadOfKsp
+    kapt(libs.compiler)                                 //Glide Compiler
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 }

@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">News 2</string>
+    <string name="app_name">News 2 - Little App</string>
+
+    //Theme
+    <string name="basic_theme">Basic Theme</string>
+    <string name="sec_theme">Sec Theme</string>
+
+    <string name="news_app">News App</string>
+    <string name="copy">Copy</string>
+    <string name="share">Share</string>
+    <string name="post_details">Post Details</string>
 </resources>
